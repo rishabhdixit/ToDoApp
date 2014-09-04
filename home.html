@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="home.js"></script>
+    <link rel="stylesheet" href="my.css">
+
+    <style>
+        .table {
+            width:50%;
+        }
+
+    </style>
+
+</head>
+<body ng-app="myapp">
+<h1><b>To Do App</b></h1>
+<div ng-controller="TaskController">
+<input type="text" ng-model="task" >
+    <input type="button" class="button" value="AddTask" ng-click="add(this)" >
+    <button type="button" class="button" ng-click="undo()">Undo</button>
+    <button type="button" class="button" ng-click="redo()" ng-hide="redohide">Redo</button>
+
+<table border="2" ng-hide="val" class="table">
+    <thead>
+        <td>Task Name</td>
+
+        <td>Action</td>
+    </thead>
+    <tr ng-repeat="task in TaskArray track by $index">
+        <td>
+            <img alt="Not starred" width="20px" height="20px"
+                 src={{task.imgUrl}} ng-click="changeImg($index)">
+            {{ task.Task }}
+        </td>
+
+        <td>
+            <button type="button" class="button" ng-click="remove($index)">Done</button>
+            <button tye="button" class="button" ng-click="edit($index)">Edit</button>
+        </td>
+    </tr>
+</table>
+</div>
+</body>
+</html>
